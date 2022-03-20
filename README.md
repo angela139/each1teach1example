@@ -1,7 +1,5 @@
 # Each1Teach1 Leaderboard
-### This is a website that I have created for the program Each1Teach1 to monitor interns' scores. It uses the Google Classroom API to get grades from the interns' work. It is currently being hosted on Heroku on this [website]("https://e1t1-leaderboard.herokuapp.com/").
-
-<br>
+#### This is a website that I have created for the program Each1Teach1 to monitor interns' scores. It uses the Google Classroom API to get grades from the interns' work. It is currently being hosted on Heroku on this [website]("https://e1t1-leaderboard.herokuapp.com/").
 
 # Using the leaderboard for your own students on local computer
 1. Fork this project and clone to local computer.
