@@ -1,17 +1,15 @@
 from __future__ import print_function
-import os.path
+import os
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
-SCOPES = ['https://www.googleapis.com/auth/classroom.coursework.students',
-          'https://www.googleapis.com/auth/classroom.rosters', 'https://www.googleapis.com/auth/classroom.courses']
-
 
 def get_scores():
-
+    SCOPES = ['https://www.googleapis.com/auth/classroom.coursework.students',
+              'https://www.googleapis.com/auth/classroom.rosters', 'https://www.googleapis.com/auth/classroom.courses']
     coursework_array = []
     student_array = []
     course_id = ""
@@ -19,7 +17,17 @@ def get_scores():
     # Authorize user for Google Classroom API
     creds = None
     if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json')
+        creds = Credentials.from_authorized_user_file("token.json")
+    else:
+        creds = Credentials.from_authorized_user_info(
+            {"token": os.environ['TOKEN'],
+             "refresh_token": os.environ['REFRESH_TOKEN'],
+             "token_uri": os.environ['TOKEN_URI'],
+             "client_id": os.environ['CLIENT_ID'],
+             "client_secret": os.environ['CLIENT_SECRET'],
+             "scopes": SCOPES,
+             "expiry": os.environ['EXPIRY']})
+    '''
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
@@ -30,6 +38,8 @@ def get_scores():
         # Save the credentials for the next run
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
+            
+    '''
 
     service = build('classroom', 'v1', credentials=creds)
     course_list = service.courses()
@@ -62,4 +72,3 @@ def get_scores():
                 pass
 
     return student_array
-
