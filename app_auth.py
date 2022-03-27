@@ -33,7 +33,7 @@ def connect_firebase():
         firebase_admin.initialize_app(firebase_cred, {
             'databaseURL': os.environ['DATABASE_URL'],
             'databaseAuthVariableOverride': {
-                'uid': os.environ['UID']
+                'uid': os.environ['APP_UID']
             }
         })
     else:
