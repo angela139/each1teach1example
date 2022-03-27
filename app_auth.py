@@ -52,7 +52,7 @@ def connect_google_classroom():
             {"token": os.environ['TOKEN'],
              "refresh_token": os.environ['REFRESH_TOKEN'],
              "token_uri": os.environ['TOKEN_URI'],
-             "client_id": os.environ['CLIENT_ID'],
+             "client_id": os.environ['G_C_CLIENT'],
              "client_secret": os.environ['CLIENT_SECRET'],
              "scopes": SCOPES,
              "expiry": os.environ['EXPIRY']})
