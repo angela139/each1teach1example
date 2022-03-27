@@ -1,10 +1,13 @@
-@media (max-width: 767.98px) {
+@media (max-width: 1248px) {
     body {
-    text-align: center;
-    font-size: 3.5vw;
+        text-align: center;
+        font-size: 3vw;
+    }
+    h3{
+        font-size: 4vw;
+    }
 }
-}
-@media (min-width: 768px) {
+@media (min-width: 1248px) {
     body {
         text-align: center;
         font-size: 1.5vw;
