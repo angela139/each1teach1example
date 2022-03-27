@@ -1,22 +1,28 @@
 @media (max-width: 1248px) {
     body {
+        background-color: white;
         text-align: center;
-        font-size: 3vw;
+        font-size: 6vw;
     }
-    h3{
+    .heading {
+        padding: 4vw;
+        background-color: #3e56c9;
+        color: white;
         font-size: 6vw;
     }
 }
 @media (min-width: 1248px) {
     body {
+        background-color: white;
         text-align: center;
-        font-size: 1.5vw;
+        font-size: 1.7vw;
     }
-}
-.heading {
-    padding: 20px;
-    background-color: #3e56c9;
-    color: white;
+    .heading {
+        padding: 1vw;
+        background-color: #3e56c9;
+        color: white;
+        font-size: 3vw;
+    }
 }
 .table-top {
     font-weight: bold;
@@ -26,5 +32,6 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  margin-top: 6vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
