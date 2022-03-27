@@ -1,34 +1,27 @@
-
 @media (max-width: 767.98px) {
-    .style-table {
-        margin: auto;
-        width: 95vw;
-        height: 80vh;
-        overflow: auto;
-        text-align: center;
-        font-size: 2.8vw;
-        font-weight: bold;
-    }
+    body {
+    text-align: center;
+    font-size: 3.5vw;
 }
-
+}
 @media (min-width: 768px) {
-    .style-table {
-        margin: auto;
-        width: 55vw;
-        overflow: auto;
+    body {
         text-align: center;
-        font-size: 1.3vw;
-        font-weight: bold;
+        font-size: 1.5vw;
     }
 }
-
-.style-table::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
+.heading {
+    padding: 20px;
+    background-color: #3e56c9;
+    color: white;
+}
+.table-top {
+    font-weight: bold;
 }
 
-.style-table::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+.content-table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 6vh;
 }
