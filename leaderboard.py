@@ -1,53 +1,26 @@
 from __future__ import print_function
-import os
-
+import app_auth
 from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
+from firebase_admin import db
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def get_scores():
-    SCOPES = ['https://www.googleapis.com/auth/classroom.coursework.students',
-              'https://www.googleapis.com/auth/classroom.rosters', 'https://www.googleapis.com/auth/classroom.courses']
     coursework_array = []
     student_array = []
     course_id = ""
 
-    # Authorize user for Google Classroom API
-    creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file("token.json")
-    else:
-        creds = Credentials.from_authorized_user_info(
-            {"token": os.environ['TOKEN'],
-             "refresh_token": os.environ['REFRESH_TOKEN'],
-             "token_uri": os.environ['TOKEN_URI'],
-             "client_id": os.environ['CLIENT_ID'],
-             "client_secret": os.environ['CLIENT_SECRET'],
-             "scopes": SCOPES,
-             "expiry": os.environ['EXPIRY']})
-    '''
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
-            
-    '''
-
-    service = build('classroom', 'v1', credentials=creds)
+    service = build('classroom', 'v1',
+                    credentials=app_auth.connect_google_classroom())
     course_list = service.courses()
+
     # Get courses
     courses = course_list.list().execute()
     for course in courses["courses"]:
         if "E1T1 Spring" in course["name"]:
             course_id = course["id"]
+
     # Get students
     students = service.courses().students().list(courseId=course_id).execute()
     for student in students["students"]:
@@ -72,3 +45,29 @@ def get_scores():
                 pass
 
     return student_array
+
+
+def update_scores(student_array):
+    app_auth.connect_firebase()
+    ref = db.reference('/interns')
+    current_scores = ref.get()
+    for key, value in current_scores.items():
+        for intern in student_array:
+            if value["name"] == intern["name"]:
+                if value["score"] != intern["score"]:
+                    ref.child(key).update({"score": f'{intern["score"]}'})
+                else:
+                    pass
+            else:
+                pass
+
+
+# def add_intern() "Function to handle new node/user"
+
+def main():
+    new_stats = get_scores()
+    update_scores(new_stats)
+
+
+if __name__ == "__main__":
+    main()

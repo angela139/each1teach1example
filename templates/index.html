@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            {% for intern in intern_scores %}
+            {% for key, intern in intern_scores.items() %}
                <tr scope="row">
                 <td>{{ intern["name"] }}</td>
                    <td>{{ intern["score"] }}</td>
