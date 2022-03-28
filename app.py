@@ -13,7 +13,9 @@ def index():
     app_auth.connect_firebase()
     ref = db.reference('/interns')
     intern_scores = ref.get()
-    return render_template("index.html", intern_scores=intern_scores)
+    ordered = sorted(intern_scores.items(), key=lambda t:int(t[1]["score"]), reverse=True)
+    print(ordered)
+    return render_template("index.html", intern_scores=ordered)
 
 
 if __name__ == "__main__":

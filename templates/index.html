@@ -26,10 +26,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for key, intern in intern_scores.items() %}
+                    {% for intern in intern_scores %}
                     <tr scope="row">
-                        <td style="padding-top:15px; padding-bottom:15px">{{ intern["name"] }}</td>
-                        <td style="padding-top:15px; padding-bottom:15px">{{ intern["score"] }}</td>
+                        <td style="padding-top:15px; padding-bottom:15px">{{ intern[1]["name"] }}</td>
+                        <td style="padding-top:15px; padding-bottom:15px">{{ intern[1]["score"] }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
