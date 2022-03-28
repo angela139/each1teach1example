@@ -10,6 +10,11 @@
         color: white;
         font-size: 6vw;
     }
+    .info {
+        margin-top: 3vw;
+        font-style: italic;
+        font-size: 3vw;
+    }
 }
 @media (min-width: 1248px) {
     body {
@@ -22,6 +27,10 @@
         background-color: #3e56c9;
         color: white;
         font-size: 3vw;
+    }
+    .info {
+        font-style: italic;
+        font-size: 1.4vw;
     }
 }
 .table-top {
